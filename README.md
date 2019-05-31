@@ -8,6 +8,9 @@ interest sources
  - src/limo/keyframe_bundle_adjustment_ros_tool/src/common/general_helpers.hpp
  
  Usage
+  sould be changed : 
+         src/limo/keyframe_bundle_adjustment_ros_tool/src/mono_lidar/mono_lidar.cpp     
+         
   1. build : cd src/limo && bash install_repos.sh
   2. source update (optional): cd ~ && source ${your catkin limo dir}/devel_limo_release/setup.bash
   3. run rosbag : rosbag play 04.bag -r 0.1 --pause --clock (run roscore)
@@ -15,6 +18,7 @@ interest sources
     -> test.txt file will be created (test.txt : estimated pose data file.)
     
  evaluation
+  download (evaluate_odometry.cpp, matrix.cpp, matrix.h, mail.h) in limo directory
   required : pdfcrop  - sudo apt-get -y install texlive-extra-utils
              gnuplot  - sudo apt-get -y install gnuplot
   setup : make result_o4 directory in limo direcotry (cd src/limo && mkdir result_o4)
