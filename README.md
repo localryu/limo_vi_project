@@ -21,11 +21,11 @@ This repository made for visual intelligent term project
   download (evaluate_odometry.cpp, matrix.cpp, matrix.h, mail.h) in limo directory
   
   required : 
-    pdfcrop  - sudo apt-get -y install texlive-extra-utils
+    pdfcrop  - sudo apt-get -y install texlive-extra-utils\n
     gnuplot  - sudo apt-get -y install gnuplot
              
   setup : 
-    make result_o4 directory in limo direcotry (cd src/limo && mkdir result_o4)
+    make result_o4 directory in limo direcotry (cd src/limo && mkdir result_o4)\n
     move test.txt file in the result_04 directory
    
   1. g++ -O3 -DNDEBUG -o evaluate_odometry evaluate_odometry.cpp matrix.cpp
