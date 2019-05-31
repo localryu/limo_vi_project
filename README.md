@@ -19,8 +19,10 @@ This repository made for visual intelligent term project
     
 # evaluation
   download (evaluate_odometry.cpp, matrix.cpp, matrix.h, mail.h) in limo directory
+  
   required : pdfcrop  - sudo apt-get -y install texlive-extra-utils
              gnuplot  - sudo apt-get -y install gnuplot
+             
   setup : make result_o4 directory in limo direcotry (cd src/limo && mkdir result_o4)
           move test.txt file in the result_04 directory
    
