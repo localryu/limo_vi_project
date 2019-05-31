@@ -23,7 +23,7 @@ This repository made for visual intelligent term project
     -> test.txt file will be created (test.txt : estimated pose data file.)
     
 # evaluation
-  download (evaluate_odometry.cpp, matrix.cpp, matrix.h, mail.h) in limo directory
+  download (evaluate_odometry.cpp, matrix.cpp, matrix.h, mail.h, 04.txt) in limo directory
   
   required : 
   
