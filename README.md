@@ -9,7 +9,7 @@ This repository made for visual intelligent term project
  
 # Usage
   sould be changed : 
-         src/limo/keyframe_bundle_adjustment_ros_tool/src/mono_lidar/mono_lidar.cpp     
+    src/limo/keyframe_bundle_adjustment_ros_tool/src/mono_lidar/mono_lidar.cpp     
          
   1. build : cd src/limo && bash install_repos.sh
   2. source update (optional): cd ~ && source ${your catkin limo dir}/devel_limo_release/setup.bash
@@ -20,11 +20,13 @@ This repository made for visual intelligent term project
 # evaluation
   download (evaluate_odometry.cpp, matrix.cpp, matrix.h, mail.h) in limo directory
   
-  required : pdfcrop  - sudo apt-get -y install texlive-extra-utils
-             gnuplot  - sudo apt-get -y install gnuplot
+  required : 
+    pdfcrop  - sudo apt-get -y install texlive-extra-utils
+    gnuplot  - sudo apt-get -y install gnuplot
              
-  setup : make result_o4 directory in limo direcotry (cd src/limo && mkdir result_o4)
-          move test.txt file in the result_04 directory
+  setup : 
+    make result_o4 directory in limo direcotry (cd src/limo && mkdir result_o4)
+    move test.txt file in the result_04 directory
    
   1. g++ -O3 -DNDEBUG -o evaluate_odometry evaluate_odometry.cpp matrix.cpp
   2. ./evaluate_odometry _04
