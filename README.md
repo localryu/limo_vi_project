@@ -11,7 +11,7 @@ This repository made for visual intelligent term project
 # Usage
   sould be changed : 
   
-    src/limo/keyframe_bundle_adjustment_ros_tool/src/mono_lidar/mono_lidar.cpp     
+    src/limo/keyframe_bundle_adjustment_ros_tool/src/mono_lidar/mono_lidar.cpp
          
   1. build : cd src/limo && bash install_repos.sh
   
@@ -34,12 +34,12 @@ This repository made for visual intelligent term project
              
   setup : 
   
-    make result_o4 directory in limo direcotry (cd src/limo && mkdir result_o4)
+    make resulto4 directory in limo direcotry (cd src/limo && mkdir resulto4)
     
-    move test.txt file in the result_04 directory
+    move test.txt file in the result04 directory
    
   1. g++ -O3 -DNDEBUG -o evaluate_odometry evaluate_odometry.cpp matrix.cpp
   
-  2. ./evaluate_odometry _04
+  2. ./evaluate_odometry 04
   
-     -> evaluation files will be created in the result_04 directory.
+     -> evaluation files will be created in the result04 directory.

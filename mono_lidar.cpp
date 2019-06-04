@@ -21,7 +21,9 @@
 #include <chrono>
 #include <fstream>
 #include <iostream>
-
+int frame1 = 0;
+int framen = 0;
+int framenn = 0;
 
 namespace keyframe_bundle_adjustment_ros_tool {
 
@@ -94,7 +96,8 @@ void MonoLidar::callbackSubscriber(const TrackletsMsg::ConstPtr& tracklets_msg,
 
     std::stringstream ss;
     ss << std::endl;
-
+    frame1++;
+    std::cout << "callback count : " << frame1 << std::endl;
     image_geometry::PinholeCameraModel model;
     model.fromCameraInfo(camera_info_msg);
     assert(model.fx() == model.fy()); // we only support undistorted images
@@ -149,6 +152,8 @@ void MonoLidar::callbackSubscriber(const TrackletsMsg::ConstPtr& tracklets_msg,
                       .count()
                << " ms" << std::endl;
             ROS_DEBUG_STREAM("In MonoLidar: pose_prior for kf=\n" << pose_prior_cur_kf.matrix());
+            framen++;
+            std::cout << "framen count : " << framen << std::endl;
             pose_prior_keyframe_origin.translation() = pose_prior_cur_kf.translation();
             pose_prior_keyframe_origin.linear() = pose_prior_cur_kf.rotation();
         } else {
@@ -364,15 +369,22 @@ void MonoLidar::callbackSubscriber(const TrackletsMsg::ConstPtr& tracklets_msg,
     timestamp_last_kf.fromNSec(bundle_adjuster_->getKeyframe().timestamp_);
     auto start_time_send_tf = std::chrono::steady_clock::now();
     maybeSendPoseTf(timestamp_last_kf, bundle_adjuster_->getKeyframe().getEigenPose());
+    framenn++;
+    std::cout << "framenn count : " << framenn << std::endl;
     std::cout << "eval_pose : \n" << bundle_adjuster_->getKeyframe().getEigenPose().inverse().matrix() << std::endl;
     // write File
     std::ofstream writeFile(filePath.data(), std::ios::app);
     writeFile.setf(std::ios::scientific);
     writeFile.setf(std::ios::showpoint);
     writeFile.precision(6);
-    writeFile << bundle_adjuster_->getKeyframe().getEigenPose().inverse().matrix()(0,0) << " " << bundle_adjuster_->getKeyframe().getEigenPose().inverse().matrix()(0,1) << " " << bundle_adjuster_->getKeyframe().getEigenPose().inverse().matrix()(0,2) << " " << bundle_adjuster_->getKeyframe().getEigenPose().inverse().matrix()(0,3) << " " <<
+    if(frame1!=framenn){
+      std::cout << "unused frame number : " << frame1 << std::endl;
+      writeFile << "unused frame number : " << frame1 << std::endl;
+      framenn++;
+    }
+    writeFile << bundle_adjuster_->getKeyframe().getEigenPose().inverse().matrix()(0,0) << " " << bundle_adjuster_->getKeyframe().getEigenPose().inverse().matrix()(0,1) << " " << bundle_adjuster_->getKeyframe().getEigenPose().inverse().matrix()(0,2) << " " << bundle_adjuster_->getKeyframe().getEigenPose().inverse().matrix()(2,3) << " " <<
                  bundle_adjuster_->getKeyframe().getEigenPose().inverse().matrix()(1,0) << " " << bundle_adjuster_->getKeyframe().getEigenPose().inverse().matrix()(1,1) << " " << bundle_adjuster_->getKeyframe().getEigenPose().inverse().matrix()(1,2) << " " << bundle_adjuster_->getKeyframe().getEigenPose().inverse().matrix()(1,3) << " " <<
-                 bundle_adjuster_->getKeyframe().getEigenPose().inverse().matrix()(2,0) << " " << bundle_adjuster_->getKeyframe().getEigenPose().inverse().matrix()(2,1) << " " << bundle_adjuster_->getKeyframe().getEigenPose().inverse().matrix()(2,2) << " " << bundle_adjuster_->getKeyframe().getEigenPose().inverse().matrix()(2,3) << " " <<std::endl;
+                 bundle_adjuster_->getKeyframe().getEigenPose().inverse().matrix()(2,0) << " " << bundle_adjuster_->getKeyframe().getEigenPose().inverse().matrix()(2,1) << " " << bundle_adjuster_->getKeyframe().getEigenPose().inverse().matrix()(2,2) << " " << bundle_adjuster_-> getKeyframe().getEigenPose().inverse().matrix()(0,3) << " " <<std::endl;
     writeFile.close();
     ss << "Duration send pose tf="
        << std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now() - start_time_send_tf)
